@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "./Navbar";
 
-export default function Home(){
-    return(
-        <div>
+export default function Home() {
+    return (
+        <>
+        <header className="navbar navbar-fixed">
             <ul>
-            <Link to="/nasaphoto">Nasa Photo</Link>
+                <Link className="Link" to="/nasaphoto">Nasa Photo</Link>
             </ul>
             <ul>
-            <Link to="/issSat">ISS</Link>
+                <Link className="Link" to="/issSat">ISS</Link>
             </ul>
-        </div>
+        </header>
+        </>
     )
 }

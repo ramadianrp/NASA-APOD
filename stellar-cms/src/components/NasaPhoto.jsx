@@ -25,11 +25,12 @@ export default function NasaPhoto(){
     return(
         <>
         <NavBar />
-        <div className="NasaMain">
-            <img src={photoData.url}/>
-            <div>
+        <div className="NasaMain fullscreen-bg">
+            <img src={photoData.url} className="imageNasa"/>
+            <div className="isiNasa">
+                <h3>Photo of the day :</h3>
                 <h1>{photoData.title}</h1>
-                <p>{photoData.date}</p>
+                <p> date : {photoData.date}</p>
                 <p>{photoData.explanation}</p>
             </div>
         </div>

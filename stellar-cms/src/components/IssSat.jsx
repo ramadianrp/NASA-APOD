@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./Navbar";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function IssSat() {
     const [issData, setIssData] = useState(null);
@@ -17,9 +19,18 @@ export default function IssSat() {
                 throw new Error('Failed to fetch data');
             }
             const data = await res.json();
-            setIssData(data[0]); 
+            setIssData(data[0]);
         } catch (error) {
             console.error('Error fetching data:', error);
+        }
+    }
+
+    async function handleClick() {
+        try {
+            const response = await axios.get('https://5ed24c67-3bee-4c64-bb1b-8453c0483738.mock.pstmn.io/location');
+            console.log(JSON.stringify(response.data));
+        } catch (error) {
+            console.error('Error fetching location:', error);
         }
     }
 
@@ -40,6 +51,9 @@ export default function IssSat() {
                         <tr>
                             <th>{issData.name}</th>
                             <th>{issData.id}</th>
+                        </tr>
+                        <tr>
+                        <button className="button" onClick={handleClick}>Show Position</button>
                         </tr>
                     </table>
                 </div>

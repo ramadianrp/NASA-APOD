@@ -10,9 +10,15 @@ export default function Home() {
                 <Link className="Link" to="/nasaphoto">Nasa Photo</Link>
             </ul>
             <ul>
-                <Link className="Link" to="/issSat">ISS</Link>
+                <Link className="Link" to="/issPos">ISS Position</Link>
+            </ul>
+            <ul>
+                <Link className="Link" to="/astro">Astronauts</Link>
             </ul>
         </header>
+        <div className="home-background">
+            <h1>Choose From Navbar</h1>
+        </div>
         </>
     )
 }

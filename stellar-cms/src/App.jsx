@@ -5,6 +5,8 @@ import Home from './components/Home'
 import NasaPhoto from './components/NasaPhoto'
 import './App.css'
 import IssSat from './components/IssSat'
+import IssPosition from './components/IssPosition'
+import SpaceMan from './components/SpaceMan'
 
 function App() {
   return(
@@ -12,7 +14,8 @@ function App() {
       <Routes>
         <Route Component={Home} path="/" />
         <Route Component={NasaPhoto} path='/nasaphoto' />
-        <Route Component={IssSat} path='/issSat' />
+        <Route Component={IssPosition} path='/issPos' />
+        <Route Component={SpaceMan} path='/astro' />
       </Routes>
     </BrowserRouter>
   )

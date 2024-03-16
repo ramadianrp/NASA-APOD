@@ -52,9 +52,6 @@ export default function IssSat() {
                             <th>{issData.name}</th>
                             <th>{issData.id}</th>
                         </tr>
-                        <tr>
-                        <button className="button" onClick={handleClick}>Show Position</button>
-                        </tr>
                     </table>
                 </div>
             </div>

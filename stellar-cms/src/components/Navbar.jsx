@@ -11,7 +11,10 @@ export default function NavBar(){
                 <Link className="Link" to="/nasaphoto">Nasa Photo</Link>
             </ul>
             <ul>
-                <Link className="Link" to="/issSat">ISS</Link>
+                <Link className="Link" to="/issPos">ISS Position</Link>
+            </ul>
+            <ul>
+                <Link className="Link" to="/astro">Astro</Link>
             </ul>
         </header>
     )

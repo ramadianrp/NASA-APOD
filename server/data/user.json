@@ -1,0 +1,11 @@
+[
+    {
+        "id" : 1,
+        "username" : "Ganajr",
+        "email" : "jarganjar@gmail.com",
+        "password" : "pdi123",
+        "role" : "admin",
+        "phoneNumber" : "0812882857238",
+        "address" : "Rumah"
+    }
+]

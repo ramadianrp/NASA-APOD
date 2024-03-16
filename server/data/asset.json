@@ -1,0 +1,9 @@
+[
+    {
+        "id" : 1,
+        "name" : "Andromeda",
+        "desc" : "The Andromeda Galaxy is a barred spiral galaxy and is the nearest major galaxy to the Milky Way. It was originally named the Andromeda Nebula and is cataloged as Messier 31, M31, and NGC 224.",
+        "dateFound" : "965ce",
+        "userId" : 1
+    }
+]

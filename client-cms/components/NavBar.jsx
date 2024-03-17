@@ -5,16 +5,10 @@ export default function NavBar(){
     return(
         <header className="navbar navbar-fixed">
             <ul>
-                <Link className="Link" to="/">Back to Home</Link>
+                <Link className="Link" to="/asset">Asset</Link>
             </ul>
             <ul>
-                <Link className="Link" to="/nasaphoto">Nasa Photo</Link>
-            </ul>
-            <ul>
-                <Link className="Link" to="/issPos">ISS Position</Link>
-            </ul>
-            <ul>
-                <Link className="Link" to="/astro">Astro</Link>
+                <Link className="Link" to="/add-user">Add Member</Link>
             </ul>
         </header>
     )

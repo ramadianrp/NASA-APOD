@@ -11,16 +11,8 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const handleInputChange = async (event) => {
-    // console.log(event.target.value, "<<< ini EVENT");
+    console.log(event.target.value, "<<< ini EVENT");
     const { name, value } = event.target;
-
-    // const newInput = {
-    //   ...input,
-    // };
-
-    // newInput[name] = value;
-
-    // setInput(newInput);
     setInput({
       ...input,
       [name]: value,
@@ -49,14 +41,6 @@ function LoginPage() {
       {/* Login Section */}
       <section className="container" id="login-section">
         <div className="row">
-          <div className="col-12 text-center">
-            <h1 className="mb-3 mt-5" style={{ color: "black" }}>
-              Login Options
-            </h1>
-            <span style={{ color: "black" }}>
-              Log in 
-            </span>
-          </div>
           <div className="col-12 col-lg-8 offset-lg-2 my-5">
             <div className="row align-items-center">
               <div className="col-12 col-md-6 border-end p-5 text-left">

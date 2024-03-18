@@ -31,6 +31,7 @@ export default function NasaPhoto(){
                 <h3>Photo of the day :</h3>
                 <h1>{photoData.title}</h1>
                 <p> date : {photoData.date}</p>
+                <p> by : {photoData.copyright}</p>
                 <p>{photoData.explanation}</p>
             </div>
         </div>

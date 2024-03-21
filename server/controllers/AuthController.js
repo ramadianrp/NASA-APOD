@@ -6,8 +6,8 @@ class AuthController {
   static async addUser(req, res, next) {
     try {
         // console.log("aaaaaaaa");
-      const { email, password, role, phoneNumber, address } = req.body;
-      await User.create({ email, password, role, phoneNumber, address });
+      const { username, email, password, role, phoneNumber, address } = req.body;
+      await User.create({ username, email, password, role, phoneNumber, address });
 
       const newUser = {email, role}
       res.status(201).json({ message: "user created", newUser });

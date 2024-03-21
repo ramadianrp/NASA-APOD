@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express')
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4001;
 const router = require("./routers/index");
 
 const cors = require('cors');
@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
 
 app.use(router)
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
 
 module.exports = app

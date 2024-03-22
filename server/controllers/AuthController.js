@@ -5,15 +5,15 @@ const { comparePassword } = require("../helpers/bycrpt");
 class AuthController {
   static async addUser(req, res, next) {
     try {
-        // console.log("aaaaaaaa");
+      // console.log("aaaaaaaa");
       const { username, email, password, role, phoneNumber, address } = req.body;
       await User.create({ username, email, password, role, phoneNumber, address });
 
-      const newUser = {email, role}
+      const newUser = { email, role }
       res.status(201).json({ message: "user created", newUser });
     } catch (error) {
       console.log(error);
-      next(error); 
+      next(error);
     }
   }
 
@@ -64,35 +64,35 @@ class AuthController {
     }
   }
 
-  static async googleLogin(req, res, next){
+  static async googleLogin(req, res, next) {
     try {
-        const {googleToken} = req.body
-        console.log(googleToken,"<<<<<<<<<");
-        const ticket = await client.verifyIdToken({
-            idToken: googleToken.credential,
-            audience: process.env.Google,  
-        });
-        const payload = ticket.getPayload();
-        
-        let user = await User.findOne({
-            email:payload.email
+      const { googleToken } = req.body
+      console.log(googleToken, "<<<<<<<<<");
+      const ticket = await client.verifyIdToken({
+        idToken: googleToken.credential,
+        audience: process.env.Google,
+      });
+      const payload = ticket.getPayload();
+
+      let user = await User.findOne({
+        email: payload.email
+      })
+
+      if (!user) {
+        user = await User.create({
+          email: payload.email,
+          user: payload.username,
+          password: Date.now() + Math.random() + "-dummy-password",
         })
+      }
+      const token = signToken({ id: user.id })
 
-        if(!user){
-            user = await User.create({
-                email:payload.email,
-                user: payload.username,
-                password:Date.now() + Math.random()+"-dummy-password",
-            })
-        }
-        const token = signToken({id:user.id})
-
-        res.status(201).json({token})
+      res.status(201).json({ token })
 
     } catch (error) {
-        next(error)
+      next(error)
     }
-}
+  }
 
 
 }

@@ -1,6 +1,8 @@
 const { User } = require("../models");
 const { signToken } = require("../helpers/jwt");
 const { comparePassword } = require("../helpers/bycrpt");
+const { OAuth21Client } = require("google-auth-library");
+const client = new OAuth21Client()
 
 class AuthController {
   static async addUser(req, res, next) {

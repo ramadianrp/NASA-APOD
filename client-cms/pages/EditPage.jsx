@@ -2,15 +2,17 @@ import { useState } from "react";
 import Form from "../components/Form";
 import { useEffect } from "react";
 import axios from "axios"
+import { useParams } from "react-router-dom";
 
 const EditPage = () => {
   const [data, setData] = useState(null);
 
   async function fetchData() {
+    const { id } = useParams()
     try {
       const { data } = await axios({
         method: "GET",
-        url: `https://enter.stellar-ip.online/asset`,
+        url: `https://main.stellar-ip.online/${id}`,
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -29,9 +31,6 @@ const EditPage = () => {
   return (
     <>
       <div className="container">
-        <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 className="display-2 col-md-9 ms-sm-auto col-lg-10 px-md-4">Edit Asset</h1>
-        </div>
         <Form types={data}/>
       </div>
     </>

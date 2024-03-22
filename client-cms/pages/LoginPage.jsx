@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
@@ -25,7 +25,7 @@ function LoginPage() {
     try {
       const { data } = await axios({
         method: "POST",
-        url: `https://enter.stellar-ip.online/login`,
+        url: `https://main.stellar-ip.online/login`,
         data: input,
       });
       console.log(data, "ini data di handle");
@@ -36,92 +36,58 @@ function LoginPage() {
     }
   };
 
+  const handleCredentialResponse = async (credential) => {
+    // console.log("Encoded JWT ID token: ", response);
+    try {
+      const { data } = await axios.post(`https://main.stellar-ip.online/google-login`, {
+        googleToken: credential
+      });
+      localStorage.access_token = data.access_token;
+      navigate("/");
+      Swal.fire({
+        title: "login success",
+        icon: "success",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id: "400285801655-r144spmn48l2tc05ck0ujlo9sqs7r8bu.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }  // customization attributes
+    );
+    // google.accounts.id.prompt(); // also display the One Tap dialog
+
+  }, [])
+
   return (
     <>
       {/* Login Section */}
-      <section className="container" id="login-section">
-        <div className="row">
-          <div className="col-12 col-lg-8 offset-lg-2 my-5">
-            <div className="row align-items-center">
-              <div className="col-12 col-md-6 border-end p-5 text-left">
-              </div>
-              <div className="col-10 col-md-6 p-5 text-left">
-                <div className="form-signin m-auto">
-                  <form id="login-form" onSubmit={handleSubmit}>
-                    <h1
-                      className="h3 mb-4 display-5"
-                      style={{ color: "black" }}
-                    >
-                      Log in to your account
-                    </h1>
-                    <div className="mb-3 mt-3">
-                      <div className="d-flex justify-content-between">
-                        <label htmlFor="login-email" style={{ color: "black" }}>
-                          Email
-                        </label>
-                        <label className="text-danger text-end fw-bold">
-                          *
-                        </label>
-                      </div>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="login-email"
-                        name="email"
-                        onChange={handleInputChange}
-                        value={input.email}
-                        placeholder="EMAIL BANG"
-                        autoComplete="off"
-                        required=""
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <div className="d-flex justify-content-between">
-                        <label
-                          htmlFor="login-password"
-                          style={{ color: "black" }}
-                        >
-                          Password
-                        </label>
-                        <label className="text-danger text-end fw-bold">
-                          *
-                        </label>
-                      </div>
-                      <input
-                        type="password"
-                        className="form-control"
-                        name="password"
-                        onChange={handleInputChange}
-                        value={input.password}
-                        id="login-password"
-                        placeholder="PASSWORD BANG"
-                        autoComplete="off"
-                        required=""
-                      />
-                    </div>
-                    <div className="checkbox mb-3">
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          defaultValue=""
-                          id="login-remember"
-                        />
-                      </div>
-                    </div>
-                    <button
-                      className="btn btn-lg btn-primary rounded-pill w-100 p-2"
-                      type="submit"
-                    >
-                      Log In
-                    </button>
-                  </form>
-                </div>
-              </div>
+      <div className="flex justify-center items-center h-screen">
+        <div className="border-2 rounded-lg p-8 shadow-lg items-center" >
+          <h1 className="block font-bold text-teal-500 text-4xl text-center">Login</h1>
+          <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8">
+            <div className="mb-4 ">
+              <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+              <input type="email" id="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="email" onChange={handleInputChange} required />
             </div>
-          </div>
+            <div className="mb-6">
+              <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+              <input type="password" id="password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" onChange={handleInputChange} required />
+            </div>
+            <div className="flex items-center justify-center">
+              <button type="submit" className="bg-teal-500 hover:bg-teal-700 text-dark font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+            </div>
+          </form>
+          <div className="flex items-center justify-center" id="buttonDiv"></div>
         </div>
-      </section>
+      </div>
       {/* End Login Section */}
     </>
   );

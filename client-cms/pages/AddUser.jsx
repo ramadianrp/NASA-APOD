@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function AddStaffPage() {
   const [input, setInput] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     phoneNumber: "",
@@ -28,7 +28,7 @@ function AddStaffPage() {
     try {
       const { data } = await axios({
         method: "POST",
-        url: `https://enter.stellar-ip.online/add-user`,
+        url: `https://main.stellar-ip.online/add-user`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -43,12 +43,12 @@ function AddStaffPage() {
   return (
     <>
       {/* New User Section */}
-      <section className="col-md-0 px-md-4" id="new-user-section">
+      <section className="col-md-0 px-md-4 d-flex justify-content-center" id="new-user-section">
         <div className="row">
           <div className="col-12 col-md-6">
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <form id="register-form" onSubmit={handleButtonSubmitAddStaff}>
-                <h1 className="h3 mb-3 display-1">Add User</h1>
+                <h1 className="h3 mb-3 display-1 text-center">Add User</h1>
                 <div className="mb-3">
                   <div className="d-flex justify-content-between">
                     <label htmlFor="register-username">Username</label>
@@ -57,7 +57,7 @@ function AddStaffPage() {
                   <input
                     type="text"
                     value={input.name}
-                    name="name"
+                    name="username"
                     onChange={handleInputAddStaffChange}
                     className="form-control"
                     id="register-username"
@@ -138,6 +138,7 @@ function AddStaffPage() {
           </div>
         </div>
       </section>
+
       {/* End New User Section */}
     </>
   );

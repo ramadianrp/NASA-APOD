@@ -9,7 +9,7 @@ function TableAssetPage() {
     try {
       const { data } = await axios({
         method: "GET",
-        url: `https://enter.stellar-ip.online/asset`,
+        url: `https://main.stellar-ip.online/asset`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -20,11 +20,27 @@ function TableAssetPage() {
     }
   }
 
+  const editData = async (id) => {
+    try {
+      await axios({
+        method: "GET",
+        url: `https://main.stellar-ip.online/` + id,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
   const deleteData = async (id) => {
     try {
       await axios({
         method: "DELETE",
-        url: `https://enter.stellar-ip.online/asset` + id,
+        url: `https://main.stellar-ip.online/` + id,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -65,7 +81,7 @@ function TableAssetPage() {
                   <td className="border border-gray-400 px-4 py-2">{item.userId}</td>
                   <td className="border border-gray-400 px-4 py-2">
                     <button className="text-red-600 hover:text-red-900 mr-2" onClick={() => deleteData(item.id)}>Delete</button>
-                    <button className="text-indigo-600 hover:text-indigo-900" onClick={() => editData(item.id)}>Edit</button>
+                    {/* <Link to={`/asset/${item.id}`}>Edit</Link> */}
                   </td>
                 </tr>
               ))

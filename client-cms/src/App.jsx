@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter, redirect } from "react-router-dom";
-import './App.css'
+// import './App.css'
 import AssetList from '../pages/AssetList'
 import MainLayout from '../components/MainLayout'
 import EditPage from '../pages/EditPage'

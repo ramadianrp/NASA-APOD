@@ -13,7 +13,7 @@ class AuthController {
       res.status(201).json({ message: "user created", newUser });
     } catch (error) {
       console.log(error);
-      next(error);
+      next(error); 
     }
   }
 
@@ -63,6 +63,38 @@ class AuthController {
       next(error);
     }
   }
+
+  static async googleLogin(req, res, next){
+    try {
+        const {googleToken} = req.body
+        console.log(googleToken,"<<<<<<<<<");
+        const ticket = await client.verifyIdToken({
+            idToken: googleToken.credential,
+            audience: process.env.Google,  
+        });
+        const payload = ticket.getPayload();
+        
+        let user = await User.findOne({
+            email:payload.email
+        })
+
+        if(!user){
+            user = await User.create({
+                email:payload.email,
+                user: payload.username,
+                password:Date.now() + Math.random()+"-dummy-password",
+            })
+        }
+        const token = signToken({id:user.id})
+
+        res.status(201).json({token})
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+
 }
 
 module.exports = AuthController;

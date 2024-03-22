@@ -9,6 +9,7 @@ const errHandler = require('../middlewares/errHandler')
 
 // login-regis
 router.post("/login", AuthController.login);
+router.post("/google-login", AuthController,AuthController.googleLogin)
 router.use(authen);
 router.post("/add-user", authorAdmin, AuthController.addUser);
 
